@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/Boomer0/FileSync/issues"
   },
-  "homepage": "https://github.com/Boomer0/FileSync#readme"
+  "homepage": "https://github.com/Boomer0/FileSync",
+  "dependencies": {
+    "socket.io": "^4.0.1"
+  }
 }
