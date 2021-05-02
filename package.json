@@ -1,0 +1,23 @@
+{
+  "name": "filesync",
+  "version": "1.0.0",
+  "description": "Sync directory to remote file system",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Isaiah Kuznia",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Boomer0/FileSync.git"
+  },
+  "keywords": [
+    "File",
+    "Sync"
+  ],
+  "bugs": {
+    "url": "https://github.com/Boomer0/FileSync/issues"
+  },
+  "homepage": "https://github.com/Boomer0/FileSync#readme"
+}

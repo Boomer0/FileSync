@@ -1,0 +1,6 @@
+What's an http header
+Using https vs http
+File organization
+How to use callbacks
+Is transfering buffers faster/possible?
+Buffer sizing

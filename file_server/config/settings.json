@@ -1,0 +1,11 @@
+{
+    "clientServer": {
+        "hostname": "192.168.137.1",
+        "port": "80"
+    },
+
+    "fileServer": {
+        "hostname": "localhost",
+        "port": "8080"
+    }
+}
