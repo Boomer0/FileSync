@@ -1,24 +1,41 @@
-const cfg = require("./Server_conf.json");
-const http = require("http");
+const express = require('express');
+const socket = require('socket.io');
 const fs = require("fs");
 
-var stream = fs.createReadStream("test.txt");
-stream.on("data", (data) => {
-    var chunk = data.toString();
+const conf = require("./server_conf.json");
 
-    console.log(chunk);
+const hostname = conf.server.hostname;
+const port = conf.server.port;
 
+
+//setup server
+const app = express();
+
+const server = app.listen(port, (req, res) => {
+    console.log(`Server running on ${hostname}:${port}`);
 });
-const hostname = cfg.fileServer.hostname;
-const port = cfg.fileServer.port;
 
-const server = http.createServer((req, res) => {
-    res.writeHead(200, {
-        'Content-Type': 'text/plain'
+server.get('/', (req, res) => {
+    res.sendFile('test.txt', {root: '.'});
+});
+
+//setup socket
+const io = socket(server);
+
+io.on('connection', (socket) => {
+    console.log("User connected");
+
+    socket.on('disconnect', () => {
+        console.log("User disconnected");
     })
-    res.end(stream);
-});
+})
 
-server.listen(port, () => {
-    console.log(`Server is running at ${hostname}:${port}`);
-});
+
+
+// var stream = fs.createReadStream("test.txt");
+
+// stream.on("data", (data) => {
+//     var chunk = data.toString();
+
+//     // console.log(chunk);
+// });
