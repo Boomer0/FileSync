@@ -1,20 +1,15 @@
-const cfg = require("./config/settings.json");
-const http = require("http");
 const fs = require("fs");
+const http = require("http");
 
-const hostname = cfg.fileServer.hostname;
-const port = cfg.fileServer.port;
+const conf = require("./client_conf.json");
 
-const fileBuffer = fs.readFileSync("./Files/Node Questions.txt");
+const hostname = conf.connections.hostname;
+const port = conf.connections.port;
 
-const server = http.createServer((req, res) => {
-    res.writeHead(200, {
-        'Content-Type': 'text/plain',
-        'Content-Length': Buffer.byteLength(fileBuffer)
+
+http.get(hostname + port, (res) => {
+    res.on('data', (res) => {
+        data = res.toString('utf8');
+        console.log(data);
     })
-    res.end(fileBuffer);
-});
-
-server.listen(port, hostname, () => {
-    console.log(`Server is running at ${hostname}:${port}`);
-});
+})
