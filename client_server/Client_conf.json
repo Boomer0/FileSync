@@ -1,6 +1,6 @@
 {
     "connections": {
-        "port": 8080,
-        "hostname": null
+        "port": ":8080",
+        "hostname": "http://192.168.62.128"
     }
 }

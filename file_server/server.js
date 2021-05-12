@@ -1,5 +1,4 @@
-const express = require('express');
-const socket = require('socket.io').Server(express);
+const app = require('express')();
 const fs = require("fs");
 
 const conf = require("./server_conf.json");
@@ -9,33 +8,14 @@ const port = conf.server.port;
 
 
 //setup server
-const app = express();
-
-const server = app.listen(port, (req, res) => {
-    console.log(`Server running on ${hostname}:${port}`);
-});
 
 app.get('/', (req, res) => {
-    res.sendFile('test.txt', {root: '.'});
+    let stream = fs.createReadStream("test.txt");
+    stream.on("data", (chunk) => {
+        res.send(chunk);
+    });
 });
 
-//setup socket
-const io = socket(server);
-
-io.on('connection', (socket) => {
-    console.log("User connected");
-
-    socket.on('disconnect', () => {
-        console.log("User disconnected");
-    })
-})
-
-
-
-// var stream = fs.createReadStream("test.txt");
-
-// stream.on("data", (data) => {
-//     var chunk = data.toString();
-
-//     // console.log(chunk);
-// });
+app.listen(port, (req, res) => {
+    console.log(`Server running on ${hostname}:${port}`);
+});
