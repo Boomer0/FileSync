@@ -1,5 +1,5 @@
 const express = require('express');
-const socket = require('socket.io');
+const socket = require('socket.io').Server(express);
 const fs = require("fs");
 
 const conf = require("./server_conf.json");
@@ -15,7 +15,7 @@ const server = app.listen(port, (req, res) => {
     console.log(`Server running on ${hostname}:${port}`);
 });
 
-server.get('/', (req, res) => {
+app.get('/', (req, res) => {
     res.sendFile('test.txt', {root: '.'});
 });
 
